@@ -1,0 +1,28 @@
+void main() {
+  List<int> numbers = [1, 2, 3, 4, 5];
+  List<String> names = ['Alice', 'Bob', 'Charlie', 'Dave'];
+  
+  printListInReverseOrder(numbers);
+  printListInReverseOrder(names);
+}
+
+void printListInReverseOrder(List list) {
+  for (int i = list.length - 1; i >= 0; i--) {
+    print(list[i]);
+  }
+}
+
+// reversing a string
+String reverseString(String input) {
+  if (input == null || input.isEmpty) {
+    return input;
+  }
+  String reversed = '';
+  for (int i = input.length - 1; i >= 0; i--) {
+    reversed += input[i];
+  }
+  return reversed;
+}
+String original = 'hello';
+String reversed = reverseString(original);
+print(reversed); // prints 'olleh'
