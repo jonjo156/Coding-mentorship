@@ -1,0 +1,32 @@
+class Movie {
+  final String name;
+  final String genre;
+  final double rating;
+  final int runtime;
+  
+  Movie({
+    required this.name,
+    required this.genre,
+    required this.rating,
+    required this.runtime,    
+  });
+  
+  factory Movie.fromString(String movieString) {
+    List<String> parts = movieString.split("|");
+    String name = parts[0];
+    String genre = parts[1];
+    double rating = double.parse(parts[2]);
+    int runtime = int.parse(parts[3]);
+    return Movie(name: name, genre: genre, rating: rating, runtime: runtime);
+  }
+
+  @override
+  String toString() {
+    return "Movie(name: $name, genre: $genre, rating: $rating, runtime: $runtime)";
+  }
+}
+
+void main() {
+  Movie myMovie = Movie.fromString('The Shawshank Redemption|Drama|9.3|142');
+  print(myMovie); // Output: Movie(name: The Shawshank Redemption, genre: Drama, rating: 9.3, runtime: 142)
+}
