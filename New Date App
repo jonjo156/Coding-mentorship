@@ -1,0 +1,28 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
+
+void main() async {
+  var dating = await getDatingApi();
+  runApp(MyApp(dating: dating));
+}
+
+//json - showing what to search for (don't have API yet)
+//below is a named parameter 
+var apiResponse = {"name": "XXX", "date":"XXX"};
+
+//below Dating is the class and dating is the instance
+class MyApp extends StatelessWidget {
+  final Dating dating;
+  const MyApp({super.key, required this.dating});
+  //now using constructor method 
+
+  @overide
+  Widget Build(BuildContext context) {
+    return MaterialApp(
+      title: 'jays app',
+      home: HomePage(dating: dating),
+    );
+  }
+}
