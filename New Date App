@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.dating});
   //now using constructor method 
 
-  @overide
+  @override
   Widget Build(BuildContext context) {
     return MaterialApp(
       title: 'Jays App',
@@ -38,15 +38,45 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            color: Color.red
+            color: Color(FF0000),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('IMAGE'),
+                Text('IMAGE'), //should be image so would have to define height
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(color:Color(FFCCCB), borderRadius: BorderRadius.circular(4),),
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text('Register'))
+                    )
+                    const SizedBox(width: 8,),
+                    Icon(Icons.menu)
+                  ],
+                )
               ],
             )
           )
         ],
       )
     )
+}
+
+class Dating {
+  final String name;
+  final String date;
+  Dating({ required this.name, required this.date});
+
+ factory Dating.fromJson(Map<String, dynamic> json) {
+   return Crypto(
+    name: json['name'],
+    price: json['date']
+   );
+  }
+}
+
+Future<Dating> getDateApi() async {
+ var response = await http.get(Uri.parse('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'));
+return Dating.fromJson(jsonDecode(response.body));
 }
